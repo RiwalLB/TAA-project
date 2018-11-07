@@ -15,7 +15,16 @@ public class MovieController {
 	@Autowired
 	private MovieRepository movieRep;
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/movies", produces = "application/JSON")
+	/**
+	 * get all the movies from dataBase
+	 * @return all the movies in the dataBase
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/allMovies", produces = "application/JSON")
+	public List<Movie> getAllMovie(){
+		return (List<Movie>) movieRep.findAll();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/movie", produces = "application/JSON")
 	public TAA.Movie.Movie getMovie(@RequestParam(value = "title") String title){
 		List<Movie> movies = movieRep.findByTitle(title);
 		if(movies.isEmpty()) {

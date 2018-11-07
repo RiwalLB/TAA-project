@@ -1,5 +1,6 @@
 package TAA.Movie;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -8,8 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-public class Movie {
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+public class Movie  implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7195818564305841833L;
 
 	@Id
 	@GeneratedValue
@@ -17,6 +26,7 @@ public class Movie {
 	
 	@Column(name="title", length=50, nullable=false)
 	private String title;
+	
 	
 	private ArrayList<Genre> genreList;
 	

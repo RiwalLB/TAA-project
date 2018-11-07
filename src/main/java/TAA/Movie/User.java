@@ -29,6 +29,7 @@ public class User {
 	
 	public User(String username) {
 		this.username = username;
+		movieList.add(new Movie("bidule", new ArrayList<Genre>()));
 	}
 
 	public long getIdUser() {

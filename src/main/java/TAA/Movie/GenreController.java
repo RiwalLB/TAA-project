@@ -14,6 +14,11 @@ public class GenreController {
 	@Autowired
 	private GenreRepository genreRep;
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/allGenres", produces = "application/JSON")
+	public List<Genre> getAllGenres(){
+		return (List<Genre>) genreRep.findAll();
+	}
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/genre", produces = "application/JSON")
 	public TAA.Movie.Genre getGenre(@RequestParam(value = "genre") String genreName){
 		List<Genre> genres = genreRep.findByGenreName(genreName);
@@ -23,20 +28,15 @@ public class GenreController {
 		return genres.get(0);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/allGenres", produces = "application/JSON")
-	public List<TAA.Movie.Genre> getAllGenres(){
-		List<Genre> genres = genreRep.findByGenreName("");
-		return genres;
-	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/addGenre", produces = "application/JSON")
-	public TAA.Movie.Genre addGenre(@RequestParam(value = "name") String name ){
+	public TAA.Movie.Genre addGenre(@RequestParam(value = "genre") String genre ){
 		
-		Genre existing = getGenre(name);
+		Genre existing = getGenre(genre);
 		if(existing != null) {
 			return existing;
 		}
-		Genre newGenre = genreRep.save(new TAA.Movie.Genre(name));
+		Genre newGenre = genreRep.save(new TAA.Movie.Genre(genre));
 		return newGenre;
 	}
 	

@@ -1,12 +1,19 @@
 package TAA.Movie;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Genre {
+public class Genre implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2915138969957868858L;
 
 	@Id
 	@GeneratedValue
